@@ -80,7 +80,7 @@ public class PustakawanDAO {
         }
     }
 
-    public void delete(int id) {
+    public static void delete(int id) {
         String deleteSQL = "DELETE FROM Pustakawan WHERE idPustakawan = ?;";
 
         try (Connection conn = DBConnect.connect();

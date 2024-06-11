@@ -85,7 +85,7 @@ public class AnggotaDAO {
         }
     }
 
-    public void delete(int id) {
+    public static void delete(int id) {
         String deleteSQL = "DELETE FROM Anggota WHERE idAnggota = ?;";
 
         try (Connection conn = DBConnect.connect();

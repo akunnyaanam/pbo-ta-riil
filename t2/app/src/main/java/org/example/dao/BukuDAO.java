@@ -93,7 +93,7 @@ public class BukuDAO {
         }
     }
 
-    public void delete(int id) {
+    public static void delete(int id) {
         String deleteSQL = "DELETE FROM Buku WHERE idBuku = ?;";
 
         try (Connection conn = DBConnect.connect();

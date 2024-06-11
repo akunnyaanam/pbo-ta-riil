@@ -368,8 +368,12 @@ public class App extends Application {
 
         bDel.setOnAction(e -> {
             int idx = tableView.getSelectionModel().getSelectedIndex();
-            tableView.getItems().remove(idx);
-            clearTextFields(tfIdBuku, tfJudul, tfPenerbit, tfPenulis, tfTahunTerbit);
+            if (idx >= 0) {
+                int id = tableView.getItems().get(idx).getIdBuku();
+                BukuDAO.delete(id);
+                tableView.getItems().remove(idx);
+                clearTextFields(tfIdBuku, tfJudul, tfPenerbit, tfPenulis, tfTahunTerbit);
+            }
         });
 
         bCancel.setOnAction(e -> {
@@ -510,8 +514,12 @@ public class App extends Application {
 
         bDel.setOnAction(e -> {
             int idx = tableViewPustakawan.getSelectionModel().getSelectedIndex();
-            tableViewPustakawan.getItems().remove(idx);
-            clearTextFields(tfIdPustakawan, tfNamaPustakawan, tfAlamatPustakawan);
+            if (idx >= 0) {
+                int id = tableViewPustakawan.getItems().get(idx).getIdPustakawan();
+                PustakawanDAO.delete(id);
+                tableViewPustakawan.getItems().remove(idx);
+                clearTextFields(tfIdPustakawan, tfNamaPustakawan, tfAlamatPustakawan);
+            }
         });
 
         bCancel.setOnAction(e -> {
@@ -655,11 +663,17 @@ public class App extends Application {
 
         bDel.setOnAction(e -> {
             int idx = tableViewAnggota.getSelectionModel().getSelectedIndex();
-            tableViewAnggota.getItems().remove(idx);
-            clearTextFields(tfIdAnggota, tfNamaAnggota, tfAlamatAnggota);
+            if (idx >= 0) {
+                int id = tableViewAnggota.getItems().get(idx).getIdAnggota();
+                AnggotaDAO.delete(id);
+                tableViewAnggota.getItems().remove(idx);
+                clearTextFields(tfIdAnggota, tfNamaAnggota, tfAlamatAnggota);
+            }
         });
 
-        bCancel.setOnAction(e -> {
+        bCancel.setOnAction(e ->
+
+        {
             teksAktif(false, tfIdAnggota, tfNamaAnggota, tfAlamatAnggota);
             buttonAktif(false);
         });
@@ -671,6 +685,7 @@ public class App extends Application {
         gp.addRow(2, lbNamaAnggota, tfNamaAnggota);
         gp.addRow(3, lbAlamatAnggota, tfAlamatAnggota);
         gp.addRow(6, new Label(""), tp1);
+
         teksAktif(false, tfIdAnggota, tfNamaAnggota, tfAlamatAnggota);
         buttonAktif(false);
         return gp;
